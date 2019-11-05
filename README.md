@@ -1,7 +1,6 @@
 # plutosdr-fw
-PlutoSDR Firmware for the [ADALM-PLUTO](https://wiki.analog.com/university/tools/pluto "PlutoSDR Wiki Page") Active Learning Module
+RFSoMSDR Firmware for the [RFSoM](https://wiki.analog.com/resources/eval/user-guides/adrv936x_rfsom "ADI AD9361 System on Module") Active Learning Module
 
-Latest binary Release : [![GitHub release](https://img.shields.io/github/release/analogdevicesinc/plutosdr-fw.svg)](https://github.com/analogdevicesinc/plutosdr-fw/releases/latest)
 
 [Instructions from the Wiki: Building the image](https://wiki.analog.com/university/tools/pluto/building_the_image)
 
@@ -29,35 +28,10 @@ Following variables should be exported:
 
  ```bash
  export CROSS_COMPILE=arm-xilinx-linux-gnueabi-
- export PATH=$PATH:/opt/Xilinx/SDK/2017.2/gnu/arm/lin/bin
- export VIVADO_SETTINGS=/opt/Xilinx/Vivado/2017.4/settings64.sh
+ export PATH=$PATH:/opt/Xilinx/SDK/2019.1/gnu/arm/lin/bin
+ export VIVADO_SETTINGS=/opt/Xilinx/Vivado/2019.1/settings64.sh
  ```
 
-And you need to revert this patch:
-https://github.com/analogdevicesinc/buildroot/commit/fea212afc7dc0ee530762a1921d9ae8180778ffa
-
-
- If you receive an error similar to the following:
- ```
- Starting SDK. This could take few seconds... timeout while establishing a connection with SDK
-    while executing
-"error "timeout while establishing a connection with SDK""
-    (procedure "getsdkchan" line 108)
-    invoked from within
-"getsdkchan"
-    (procedure "createhw" line 26)
-    invoked from within
-"createhw {*}$args"
-    (procedure "::sdk::create_hw_project" line 3)
-    invoked from within
-"sdk create_hw_project -name hw_0 -hwspec build/system_top.hdf"
-    (file "scripts/create_fsbl_project.tcl" line 5)
-```
-you may be able to work around it by preventing eclipse from using GTK3 for the Standard Widget Toolkit (SWT). Prior to running make, also set the following environment variable: 
-```bash
-export SWT_GTK3=0
-```
-This problem seems to affect Ubuntu 16.04LTS only.
 
  * Updating your local repository 
  ```bash 
